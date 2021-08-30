@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% block heading%}
+<h1>HOLA</h1>
+<span class="subheading">LOGIN</span>
+{% endblock %}
+{% block content %}
+        <div class="login-page">
+		  <div class="form">
+			  {% with messages = get_flashed_messages() %}
+				{% for message in messages %}
+					<p>{{message}}</p>
+				{% endfor %}
+			{% endwith %}
+			<form class="login-form" action="{{url_for('signup')}}" method="post">
+			  <input type="text" name="name" placeholder="name" required/>
+			  <input type="text" name="email" placeholder="email address" required/>
+			  <input type="password" name="password" placeholder="password" required/>
+			  <button>create</button>
+			  <p class="message">Already registered? <a href="{{url_for('login')}}">Sign In</a></p>
+			</form>
+
+		  </div>
+		</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% block name %}
+{{user_name}}
+{% endblock %}
+{% block heading%}
+<h1>Hey user</h1>
+<span class="subheading">"{{quote}}"</span>
+{% endblock %}
+{% block content %}
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <h1>{{today}}</h1>
+                    <form action="{{url_for('add_post')}}" method="post">
+                      {{form.message(cols='60', rows='2', class="question", id="msg", placeholder="Whatsup?", autocomplete="off", autofocus="on")}}
+                      {{form.submit()}}
+                    </form>
+                    <!-- Divider-->
+                    {% for post in posts%}
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{{url_for('post',id=post['id'])}}"><h2 class="post-title">posted on {{post['title']}}</h2>
+                        <p class="post-meta home">
+                            {{post['content']}}
+                        </p>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
